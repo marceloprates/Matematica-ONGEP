@@ -1,0 +1,192 @@
+
+\documentclass[usenames,dvipsnames,svgnames]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{array} % needed for \arraybackslash
+\usepackage{graphicx}
+\usepackage{adjustbox} % for \adjincludegraphics
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage[portuguese]{babel}
+\usepackage{pgfplots}
+\usepackage{adjustbox}
+
+%Information to be included in the title page:
+\title{Funções Lineares, Quadráticas e Modulares}
+\author{Matemática}
+\institute{ONGEP}
+\date{2018}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}	
+	\frametitle{Funções Injetoras, Sobrejetoras e Bijetoras}
+
+	\begin{itemize}
+		\item Uma função injetora (ou injetiva) é uma onde cada elemento diferente do domínio mapeia para um elemento diferente da imagem: $a \neq b \Rightarrow f(a) \neq f(b)$
+		\item OBS. toda função função injetora é \textbf{invertível à esquerda} (e vice-versa). Por quê?
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.65\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(1,0.125)},anchor=south east}
+		]
+		\addplot [
+		    domain=-3:3, 
+		    samples=100, 
+		    color=blue,
+		    ]
+		    {x^3};
+		\addlegendentry{$x^3$}
+		\addplot [
+		    domain=-3:3,
+		    samples=100, 
+		    color=red,
+		]
+		{4*x^2 - 5};
+		\addlegendentry{$4x^2 - 5$}
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+
+\end{frame}
+
+\begin{frame}	
+	\frametitle{Funções Injetoras, Sobrejetoras e Bijetoras}
+
+	\begin{itemize}
+		\item Uma função sobrejetora (ou sobrejetiva) é uma onde todo elemento no codomínio é ``atingido'' (a imagem da função é igual ao codomínio): $f(X) = Y$
+		\item OBS. toda função função sobrejetora é \textbf{invertível à direita} (e vice-versa). Por quê?
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.65\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(1,0.125)},anchor=south east}
+		]
+		\addplot [
+		    domain=-4:2, 
+		    samples=100, 
+		    color=blue,
+		    ]
+		    {x+2};
+		\addlegendentry{$x + 2$}
+		\addplot [
+		    domain=-4:2, 
+		    samples=100, 
+		    color=red,
+		]
+		{3^x};
+		\addlegendentry{$3^x$}
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+
+\end{frame}
+
+\begin{frame}	
+	\frametitle{Funções Injetoras, Sobrejetoras e Bijetoras}
+
+	\begin{itemize}
+		\item Uma função bijetora (ou bijetiva) é uma onde cada elemento do domínio é mapeado para um elemento do codomínio \textbf{e vice-versa}.
+		\item OBS. toda função função bijetora é ao mesmo tempo injetora e sobrejetora. Por quê? Ela é invertível à esquerda ou à direita?
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.65\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(0.5,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-4:6, 
+		    samples=100, 
+		    color=blue,
+		    ]
+		    {-x};
+		\addlegendentry{$-x$}
+		\addplot [
+		    domain=-4:6, 
+		    samples=100, 
+		    color=ForestGreen,
+		]
+		{abs(3*x)};
+		\addlegendentry{$|3x|$}
+		\addplot [
+		    domain=-4:6, 
+		    samples=100, 
+		    color=red,
+		]
+		{4*log10(x)};
+		\addlegendentry{$4 \log_{10}(x)$}
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Funções lineares}
+
+	\begin{itemize}
+		\item Funções lineares sob várias perspectivas:
+		\begin{itemize}
+			\item O gráfico de uma função linear no plano cartesiano é uma linha reta
+			\item A lei de uma função linear genérica é $f(x) = ax + b$ (com $a,b$ constantes)
+			\item Numa função linear, a proporção entre a variação em $y$ e a variação em $x$ é sempre constante $\left(\frac{f(x_1)-f(x_2)}{x_1-x_2} = a\right)$
+		\end{itemize}
+	\end{itemize}
+
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(1,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-4:6, 
+		    samples=100, 
+		    color=blue,
+		    ]
+		    {-2*x + 3};
+		\addlegendentry{$-2x + 3$}
+		
+		\draw (axis cs:-2,7) -- (axis cs:0,7);
+		\draw (axis cs:0,7) -- (axis cs:0,3);
+
+		\draw[fill=white] (axis cs:-2,7) circle (2pt) {(-2,7)};
+		\draw[fill=white] (axis cs:0,3) circle (2pt) {(0,3)};
+
+		\node[xshift=-10pt,yshift=-10pt] at (axis cs:-2,7) {(-2,7)};
+		\node[xshift=-10pt,yshift=-10pt] at (axis cs:0,3) {(0,3)};
+
+		\draw[decoration={brace,raise=5pt},decorate] (axis cs:-2,7) -- node[yshift=15pt] {$0-(-2)=2$} (axis cs:0,7);
+		\draw[decoration={brace,raise=5pt},decorate] (axis cs:0,7) -- node[xshift=35pt] {$7-3=4$} (axis cs:0,3);
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+
+\end{frame}
+
+\end{document}
