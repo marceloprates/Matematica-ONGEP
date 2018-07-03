@@ -13,6 +13,8 @@
 \usepackage{pgfplots}
 \usepackage{adjustbox}
 
+\usetikzlibrary{calc,patterns,angles,quotes}
+
 %Information to be included in the title page:
 \title{Funções Lineares, Quadráticas e Modulares}
 \author{Matemática}
@@ -28,7 +30,7 @@
 
 	\begin{itemize}
 		\item Uma função injetora (ou injetiva) é uma onde cada elemento diferente do domínio mapeia para um elemento diferente da imagem: $a \neq b \Rightarrow f(a) \neq f(b)$
-		\item OBS. toda função função injetora é \textbf{invertível à esquerda} ($(f^{-1} \circ f) (x) = x$) -- e vice-versa. Por quê?
+		\item OBS. toda função função injetora é \textbf{invertível à esquerda} ($f^{-1}(f(x)) = x$) -- e vice-versa. Por quê?
 	\end{itemize}
 
 	\begin{adjustbox}{max totalsize={\textwidth}{.65\textheight},center}
@@ -57,7 +59,6 @@
 	\end{axis}
 	\end{tikzpicture}
 	\end{adjustbox}
-
 \end{frame}
 
 \begin{frame}	
@@ -65,7 +66,7 @@
 
 	\begin{itemize}
 		\item Uma função sobrejetora (ou sobrejetiva) é uma onde todo elemento no codomínio é ``atingido'' (a imagem da função é igual ao codomínio): $f(X) = Y$
-		\item OBS. toda função função sobrejetora é \textbf{invertível à direita} ($(f \circ f^{-1}) (x) = x$) -- e vice-versa. Por quê?
+		\item OBS. toda função função sobrejetora é \textbf{invertível à direita} ($f(f^{-1}(x)) = x$) -- e vice-versa. Por quê?
 	\end{itemize}
 
 	\begin{adjustbox}{max totalsize={\textwidth}{.65\textheight},center}
@@ -94,7 +95,6 @@
 	\end{axis}
 	\end{tikzpicture}
 	\end{adjustbox}
-
 \end{frame}
 
 \begin{frame}	
@@ -138,11 +138,10 @@
 	\end{axis}
 	\end{tikzpicture}
 	\end{adjustbox}
-
 \end{frame}
 
 \begin{frame}
-	\frametitle{Funções lineares}
+	\frametitle{Funções lineares ou do primeiro grau}
 
 	\begin{itemize}
 		\item Funções lineares sob várias perspectivas:
@@ -164,7 +163,7 @@
 		    legend style={at={(1,1)},anchor=north}
 		]
 		\addplot [
-		    domain=-4:6, 
+		    domain=-4:8, 
 		    samples=100, 
 		    color=blue,
 		    ]
@@ -173,20 +172,488 @@
 		
 		\draw (axis cs:-2,7) -- (axis cs:0,7);
 		\draw (axis cs:0,7) -- (axis cs:0,3);
-
 		\draw[fill=white] (axis cs:-2,7) circle (2pt) {(-2,7)};
 		\draw[fill=white] (axis cs:0,3) circle (2pt) {(0,3)};
-
 		\node[xshift=-10pt,yshift=-10pt] at (axis cs:-2,7) {(-2,7)};
 		\node[xshift=-10pt,yshift=-10pt] at (axis cs:0,3) {(0,3)};
+		\draw[decoration={brace,raise=5pt},decorate] (axis cs:-2,7) -- node[yshift=15pt] {$0-(-2)$} (axis cs:0,7);
+		\draw[decoration={brace,raise=5pt},decorate] (axis cs:0,7) -- node[xshift=15pt,rotate=-90] {$7-3$} (axis cs:0,3);
 
-		\draw[decoration={brace,raise=5pt},decorate] (axis cs:-2,7) -- node[yshift=15pt] {$0-(-2)=2$} (axis cs:0,7);
-		\draw[decoration={brace,raise=5pt},decorate] (axis cs:0,7) -- node[xshift=35pt] {$7-3=4$} (axis cs:0,3);
+		\draw (axis cs:2,-1) -- (axis cs:6,-1);
+		\draw (axis cs:6,-1) -- (axis cs:6,-9);
+		\draw[fill=white] (axis cs:2,-1) circle (2pt) {(2,-1)};
+		\draw[fill=white] (axis cs:6,-9) circle (2pt) {(6,-9)};
+		\node[xshift=-10pt,yshift=-10pt] at (axis cs:2,-1) {(2,-1)};
+		\node[xshift=-10pt,yshift=-10pt] at (axis cs:6,-9) {(6,-9)};
+		\draw[decoration={brace,raise=5pt},decorate] (axis cs:2,-1) -- node[yshift=15pt] {$6-2$} (axis cs:6,-1);
+		\draw[decoration={brace,raise=5pt},decorate] (axis cs:6,-1) -- node[xshift=15pt,rotate=-90] {$(-9)-(-1)$} (axis cs:6,-9);
 
 	\end{axis}
 	\end{tikzpicture}
 	\end{adjustbox}
+\end{frame}
 
+\begin{frame}
+	\frametitle{Anatomia de uma função linear}
+
+	\begin{itemize}
+		\item A constante ``a'' em $f(x) = ax + b$ é chamada ``coeficiente angular'', pois ela determina o ângulo que a reta faz com o eixo $x$.
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(1,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-4:4, 
+		    samples=100, 
+		    color=BrickRed,
+		    ]
+		    {-3*x};
+		\addlegendentry{$-3x$}
+		\addplot [
+		    domain=-4:4, 
+		    samples=100, 
+		    color=BlueViolet,
+		    ]
+		    {-2*x};
+		\addlegendentry{$-2x$}
+		\addplot [
+		    domain=-4:4, 
+		    samples=100, 
+		    color=Bittersweet,
+		    ]
+		    {-x};
+		\addlegendentry{$-1x$}
+		\addplot [
+		    domain=-4:4, 
+		    samples=100, 
+		    color=blue,
+		    ]
+		    {0};
+		\addlegendentry{$~~0x$}
+		\addplot [
+		    domain=-4:4, 
+		    samples=100, 
+		    color=red,
+		    ]
+		    {x};
+		\addlegendentry{$+1x$}
+		\addplot [
+		    domain=-4:4, 
+		    samples=100, 
+		    color=ForestGreen,
+		    ]
+		    {2*x};
+		\addlegendentry{$+2x$}
+		\addplot [
+		    domain=-4:4, 
+		    samples=100, 
+		    color=WildStrawberry,
+		    ]
+		    {3*x};
+		\addlegendentry{$+3x$}
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Anatomia de uma função linear}
+
+	\begin{itemize}
+		\small{
+		\item A constante ``a'' em $f(x) = ax + b$ é chamada ``coeficiente angular'', pois ela determina o ângulo que a reta faz com o eixo $x$.
+		\item O coeficiente angular pode ser calculado em qualquer posição da reta se dividirmos a variação em $y$ ($\Delta y$) pela variação em $x$ ($\Delta x$): $a = (\Delta y = y_1 - y_0)/(\Delta x = x_1 - x_0)$
+		}
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(1,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-4:4, 
+		    samples=100, 
+		    color=blue,
+		    ]
+		    {2*x + 3};
+		\addlegendentry{$2x + 3$}
+		
+		\draw (axis cs:2,3) -- (axis cs:2,7);
+		\draw (axis cs:0,3) -- (axis cs:2,3);
+		\draw[fill=white] (axis cs:0,3) circle (2pt) {(0,3)};
+		\draw[fill=white] (axis cs:2,7) circle (2pt) {(2,7)};
+		\node[xshift=-10pt,yshift=10pt] at (axis cs:2,7) {(2,7)};
+		\node[xshift=-10pt,yshift=10pt] at (axis cs:0,3) {(0,3)};
+		\draw[decoration={brace,raise=5pt,mirror},decorate] (axis cs:2,3) -- node[xshift=15pt,rotate=-90] {$7-3=4$} (axis cs:2,7);
+		\draw[decoration={brace,raise=5pt,mirror},decorate] (axis cs:0,3) -- node[yshift=-15pt] {$2-0=2$} (axis cs:2,3);
+
+		\draw (axis cs:0.5,3) arc (0:63:10);
+    	\node[xshift=20pt,yshift=7pt] at (axis cs:0,3)  {$\theta$};
+
+    	\draw [->,>=stealth] (axis cs:0.5,4.5) -- (axis cs:-1,8);
+    	\node[xshift=20pt,yshift=7pt] at (axis cs:-2,8.5)  {$\tan(\theta \approx 1.1) = 2 = \frac{4}{2}$};
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Anatomia de uma função linear}
+
+	\begin{itemize}
+		\small{
+		\item A constante ``b'' em $f(x) = ax + b$ é chamada ``coeficiente linear'' ou ``termo independente'', e determina onde a reta cruza o eixo $y$, porque $f(0) = a \times 0 + b = b$
+		\item O coeficiente linear também determina onde a reta cruza o eixo $x$ (ou seja, a raiz ou solução da função linear), pois $f(-b/a) = a \times (-b/a) + b = -b + b = 0$
+		}
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(1,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-4:4, 
+		    samples=100, 
+		    color=blue,
+		    ]
+		    {2*x + 3};
+		\addlegendentry{$2x + 3$}
+		
+		\draw[dashed] (axis cs:0,-5) -- (axis cs:0,10);
+		\draw[dashed] (axis cs:-4,0) -- (axis cs:4,0);
+
+		\draw[fill=white] (axis cs:-3/2,0) circle (2pt) {(-3/2,0)};
+		\draw[fill=white] (axis cs:0,3) circle (2pt) {(0,3)};
+		\node[xshift=-15pt,yshift=10pt] at (axis cs:-3/2,0) {($-\frac{3}{2}$,0)};
+		\node[xshift=-15pt,yshift=10pt] at (axis cs:0,3) {(0,3)};
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Transformações em funções lineares}
+
+	\begin{itemize}
+		\item Observe que podemos mover uma função linear para cima ou para baixo se aumentarmos ou diminuirmos o valor do coeficiente linear (``b''), respectivamente
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(1,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-2:2, 
+		    samples=100, 
+		    color=red,
+		    ]
+		    {-2*x-1};
+		\addlegendentry{$-2x-1$}
+		\addplot [
+		    domain=-2:2, 
+		    samples=100, 
+		    color=ForestGreen,
+		    ]
+		    {-2*x};
+		\addlegendentry{$-2x$}
+		\addplot [
+		    domain=-2:2, 
+		    samples=100, 
+		    color=blue,
+		    ]
+		    {-2*x+1};
+		\addlegendentry{$-2x + 1$}
+
+		\draw[dashed] (axis cs:0,-5) -- (axis cs:0,10);
+		\draw[dashed] (axis cs:-4,0) -- (axis cs:4,0);
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Transformações em funções lineares}
+
+	\begin{itemize}
+		\item Observe também que quando a reta sobe $1$ unidade, é como se ela se deslocasse algumas unidades para a direita. Quantas?
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(1,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-2:2, 
+		    samples=100, 
+		    color=red,
+		    ]
+		    {-2*x-1};
+		\addlegendentry{$-2x-1$}
+		\addplot [
+		    domain=-2:2, 
+		    samples=100, 
+		    color=ForestGreen,
+		    ]
+		    {-2*x};
+		\addlegendentry{$-2x$}
+		\addplot [
+		    domain=-2:2, 
+		    samples=100, 
+		    color=blue,
+		    ]
+		    {-2*x+1};
+		\addlegendentry{$-2x + 1$}
+
+		\draw[dashed] (axis cs:0,-5) -- (axis cs:0,10);
+		\draw[dashed] (axis cs:-4,0) -- (axis cs:4,0);
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Raízes de uma função linear}
+
+	\begin{itemize}
+		\item Uma função linear tem apenas \textbf{uma} raiz. Por quê?
+		\begin{itemize}
+			\item Graficamente: porque uma reta só cruza o eixo $x$ uma única vez
+			\item Algebricamente: porque $0 = f(x) = ax + b \Leftrightarrow ax + b = 0 \Leftrightarrow x = -b/a$, e $-b/a$ é um único valor (lembrando que no caso das equações do segundo grau temos ${\color{red}\pm} \sqrt{\dots}$)
+		\end{itemize}
+		\item Podemos escrever qualquer equação linear no seguinte formato: $a(x-r)$, onde $a$ é o coeficiente angular e $r$ é a raiz da equação
+		\item Expandindo, temos $a(x-r) = ax - ar$, onde ``$ar$'' equivale ao ``b'' (coeficiente linear) no esquema $f(x) = ax + b$
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Transformações em funções lineares}
+
+	\begin{itemize}
+		\item Podemos mover uma reta $1$ unidade para a direita ou para a esquerda subtraindo ou somando $a$ no coeficiente linear, respectivamente
+		\item Isso funciona pois $a(x-r) - a = a(x-r-1) = a(x-(r+1))$
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(1,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-2:2, 
+		    samples=100, 
+		    color=red,
+		    ]
+		    {-2*x-1};
+		\addlegendentry{$-2x-1$}
+		\addplot [
+		    domain=-2:2, 
+		    samples=100, 
+		    color=ForestGreen,
+		    ]
+		    {-2*x};
+		\addlegendentry{$-2x$}
+		\addplot [
+		    domain=-2:2, 
+		    samples=100, 
+		    color=blue,
+		    ]
+		    {-2*x+1};
+		\addlegendentry{$-2x + 1$}
+
+		\draw[dashed] (axis cs:0,-5) -- (axis cs:0,10);
+		\draw[dashed] (axis cs:-4,0) -- (axis cs:4,0);
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Funções quadráticas ou do segundo grau}
+
+	\begin{itemize}
+		\small{
+		\item Funções quadráticas sob várias perspectivas:
+		\begin{itemize}
+			\item O gráfico de uma função quadrática no plano cartesiano é uma \emph{parábola} (mas o que é uma parábola? :D)
+			\item A lei de uma função quadrática genérica é $f(x) = ax^2 + bx + c$ com $a \neq 0$ (do contrário vira uma equação linear)
+			\item A inclinação da curva quadrática (parábola) não é constante como a da reta, mas \textbf{varia linearmente}
+		\end{itemize}
+		}
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    ymin=-2,
+		    legend style={at={(0.5,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-5:5, 
+		    samples=100, 
+		    color=black,
+		    ]
+		    {x^2};
+		\addlegendentry{$x^2$}
+		
+		\addplot [
+		    domain=-5:5,
+		    samples=100, 
+		    color=red,
+		    dashed
+		    ]
+		    {2*x-1};
+		\addplot [
+		    domain=-5:5,
+		    samples=100, 
+		    color=red,
+		    dashed
+		    ]
+		    {4*x-4};
+		\addplot [
+		    domain=-5:5,
+		    samples=100, 
+		    color=red,
+		    dashed
+		    ]
+		    {6*x-9};
+		\addplot [
+		    domain=-5:5,
+		    samples=100, 
+		    color=red,
+		    dashed
+		    ]
+		    {0};
+		\addplot [
+		    domain=-5:5,
+		    samples=100, 
+		    color=red,
+		    dashed
+		    ]
+		    {-2*x-1};
+		\addplot [
+		    domain=-5:5,
+		    samples=100, 
+		    color=red,
+		    dashed
+		    ]
+		    {-4*x-4};
+		\addplot [
+		    domain=-5:5,
+		    samples=100, 
+		    color=red,
+		    dashed
+		    ]
+		    {-6*x-9};
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{O que é uma parábola?}
+
+	\begin{itemize}
+		\small{
+		\item Uma parábola é um conjunto de pontos que estão à mesma distância de um {\color{blue}ponto focal} e de uma {\color{red}reta} (chamada {\color{red}diretriz})
+		\item Demonstração interativa: \url{www.openprocessing.org/sketch/567057} \footnote{arrasta o mouse p/ mudar o ângulo da diretriz; arrasta o mouse apertando uma tecla do teclado p/ movimentar o ponto focal}
+		}
+	\end{itemize}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    ymin=-5,
+		    legend style={at={(0.5,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-5:5, 
+		    samples=100, 
+		    color=black,
+		    ]
+		    {x^2/4};
+		\addlegendentry{$y = \frac{1}{4}x^2$}
+
+		\draw[color=blue,fill=white] (axis cs:0,1) circle (2pt) {(0,1)};
+		\node[xshift=0pt,yshift=10pt] at (axis cs:0,1) {(0,1)};
+
+		\addplot [
+		    domain=-5:5,
+		    samples=100, 
+		    color=red
+		    ]
+		    {-1};
+		\addlegendentry{$y = -1$}
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Por que o gráfico de uma função quadrática é parabólico?}
+
+	\begin{itemize}
+		\item Considere a parábola do exemplo anterior, com foco $F = (0,1)$ e diretriz $y = -1$
+		\item A distância de um ponto $(x,y)$ até o foco é $\sqrt{(x-0)^2 + (y-1)^2} = \sqrt{x^2 + (y-1)^2}$
+		\item A distância de um ponto $(x,y)$ até a diretriz é a ``altura'' do ponto relativo a ela: $y-(-1) = y+1$
+		\item A parábola é o conjunto dos pontos para os quais as distâncias são iguais: $\sqrt{x^2 + (y-1)^2} = y+1$
+	\end{itemize}
+
+	\begin{equation}
+	\begin{aligned}
+		\sqrt{x^2 + (y-1)^2} = y+1 \\
+		x^2 + y^2 -2y + 1 = y^2 + 2y + 1 \\
+		x^2 -2y = 2y \\
+		x^2 = 4y \\
+		\frac{1}{4}x^2 = y
+	\end{aligned}
+	\end{equation}
 \end{frame}
 
 \end{document}
