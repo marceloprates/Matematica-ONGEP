@@ -454,7 +454,6 @@
 		\item Podemos escrever qualquer equação linear no seguinte formato: $a(x-r)$, onde $a$ é o coeficiente angular e $r$ é a raiz da equação
 		\item Expandindo, temos $a(x-r) = ax - ar$, onde ``$ar$'' equivale ao ``b'' (coeficiente linear) no esquema $f(x) = ax + b$
 	\end{itemize}
-
 \end{frame}
 
 \begin{frame}
@@ -654,6 +653,54 @@
 		\frac{1}{4}x^2 = y
 	\end{aligned}
 	\end{equation}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Raízes ou soluções de uma função quadrática}
+
+	\begin{itemize}
+		\item Toda função quadrática pode ser escrita no formato $f(x) = a(x-r_1)(x-r_2)$, onde $r_1$ e $r_2$ são as raízes (ou soluções) de $f(x)$. Por que isso funciona?
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Anatomia da fórmula quadrática (ou de Bháskara)}
+
+	\begin{itemize}
+		\item Como encontrar essas raízes?
+	\end{itemize}
+
+	\begin{equation}
+		r_1, r_2 = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+	\end{equation}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(0.5,1)},anchor=north}
+		]
+		\addplot [
+		    domain=1:4, 
+		    samples=100, 
+		    color=black,
+		    ]
+		    {x^2 -5*x + 6};
+		\addlegendentry{$f(x) = x^2 -5x + 6$}
+
+		\draw[color=blue,fill=white] (axis cs:2,0) circle (2pt) {(2,0)};
+		\node[xshift=0pt,yshift=10pt] at (axis cs:0,1) {(0,1)};
+
+		\draw[dashed] (axis cs:1,0) -- (axis cs:4,0);
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+
 \end{frame}
 
 \end{document}
