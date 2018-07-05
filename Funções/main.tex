@@ -147,7 +147,7 @@
 		\item Funções lineares sob várias perspectivas:
 		\begin{itemize}
 			\item O gráfico de uma função linear no plano cartesiano é uma linha reta
-			\item A lei de uma função linear genérica é $f(x) = ax + b$ (com $a,b$ constantes)
+			\item A lei de uma função linear genérica é $f(x) = ax + b$ (com $a,b$ constantes e $a \neq 0$)
 			\item Numa função linear, a proporção entre a variação em $y$ e a variação em $x$ é sempre constante $\left(\frac{f(x_1)-f(x_2)}{x_1-x_2} = a\right)$
 		\end{itemize}
 	\end{itemize}
@@ -191,6 +191,17 @@
 	\end{axis}
 	\end{tikzpicture}
 	\end{adjustbox}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Raízes ou soluções de uma função qualquer}
+
+	\begin{itemize}
+		\item Frequentemente temos uma função $f(x)$ e desejamos saber para quais valores de $x$ vale $f(x) = 0$
+		\item Esses valores de $x$ têm um nome especial: ``raízes'' ou ``soluções'' de $f(x)$
+		\item E se desejarmos saber para quais valores de $x$ vale $f(x) = y$ (para algum $y$ arbitrário?)
+	\end{itemize}
+
 \end{frame}
 
 \begin{frame}
@@ -355,9 +366,10 @@
 
 	\begin{itemize}
 		\item Observe que podemos mover uma função linear para cima ou para baixo se aumentarmos ou diminuirmos o valor do coeficiente linear (``b''), respectivamente
+		\item Demonstração interativa em \url{https://www.openprocessing.org/sketch/568383} \footnote{Arrasta o mouse p/ mover a linha; Arrasta o mouse apertando uma tecla p/ mudar inclinação}
 	\end{itemize}
 
-	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{adjustbox}{max totalsize={\textwidth}{.55\textheight},center}
 	\begin{tikzpicture}
 	\centering
 	\begin{axis}[
@@ -462,9 +474,10 @@
 	\begin{itemize}
 		\item Podemos mover uma reta $1$ unidade para a direita ou para a esquerda subtraindo ou somando $a$ no coeficiente linear, respectivamente
 		\item Isso funciona pois $a(x-r) - a = a(x-r-1) = a(x-(r+1))$
+		\item Demonstração interativa em \url{https://www.openprocessing.org/sketch/568383} \footnote{Arrasta o mouse p/ mover a linha; Arrasta o mouse apertando uma tecla p/ mudar inclinação}
 	\end{itemize}
 
-	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{adjustbox}{max totalsize={\textwidth}{.5\textheight},center}
 	\begin{tikzpicture}
 	\centering
 	\begin{axis}[
@@ -693,7 +706,10 @@
 		\addlegendentry{$f(x) = x^2 -5x + 6$}
 
 		\draw[color=blue,fill=white] (axis cs:2,0) circle (2pt) {(2,0)};
-		\node[xshift=0pt,yshift=10pt] at (axis cs:0,1) {(0,1)};
+		\node[xshift=5pt,yshift=12pt] at (axis cs:2,0) {(2,0)};
+
+		\draw[color=blue,fill=white] (axis cs:3,0) circle (2pt) {(3,0)};
+		\node[xshift=-5pt,yshift=12pt] at (axis cs:3,0) {(3,0)};
 
 		\draw[dashed] (axis cs:1,0) -- (axis cs:4,0);
 
@@ -702,5 +718,234 @@
 	\end{adjustbox}
 
 \end{frame}
+
+\begin{frame}
+	\frametitle{Anatomia da fórmula quadrática (ou de Bháskara)}
+
+	\begin{itemize}
+		\item Pergunta: se multiplicarmos uma função $f(x) = ax^2 + bx +c$ por alguma constante, as raízes mudam?
+	\end{itemize}
+
+	\begin{equation}
+		r_1, r_2 = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+	\end{equation}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(0.5,1)},anchor=north}
+		]
+		\addplot [
+		    domain=1:4, 
+		    samples=100, 
+		    color=black,
+		    ]
+		    {x^2 -5*x + 6};
+		\addlegendentry{$f(x) = x^2 -5x + 6$}
+
+		\draw[color=blue,fill=white] (axis cs:2,0) circle (2pt) {(2,0)};
+		\node[xshift=5pt,yshift=12pt] at (axis cs:2,0) {(2,0)};
+
+		\draw[color=blue,fill=white] (axis cs:3,0) circle (2pt) {(3,0)};
+		\node[xshift=-5pt,yshift=12pt] at (axis cs:3,0) {(3,0)};
+
+		\draw[dashed] (axis cs:1,0) -- (axis cs:4,0);
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Anatomia da fórmula quadrática (ou de Bháskara)}
+
+	\begin{itemize}
+		\item E se multiplicarmos por um número negativo?
+	\end{itemize}
+
+	\begin{equation}
+		r_1, r_2 = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+	\end{equation}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Anatomia da fórmula quadrática (ou de Bháskara)}
+
+	\begin{itemize}
+		\item E se multiplicarmos por um número negativo?
+	\end{itemize}
+
+	\begin{equation}
+		r_1, r_2 = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+	\end{equation}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    legend style={at={(0.5,0.25)},anchor=north}
+		]
+		\addplot [
+		    domain=1:4, 
+		    samples=100, 
+		    color=black,
+		    ]
+		    {-x^2 +5*x - 6};
+		\addlegendentry{$f(x) = -x^2 +5x - 6$}
+
+		\draw[color=blue,fill=white] (axis cs:2,0) circle (2pt) {(2,0)};
+		\node[xshift=5pt,yshift=12pt] at (axis cs:2,0) {(2,0)};
+
+		\draw[color=blue,fill=white] (axis cs:3,0) circle (2pt) {(3,0)};
+		\node[xshift=-5pt,yshift=12pt] at (axis cs:3,0) {(3,0)};
+
+		\draw[dashed] (axis cs:1,0) -- (axis cs:4,0);
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Anatomia da fórmula quadrática (ou de Bháskara)}
+
+	\begin{itemize}
+		\item Pergunta: como descobrimos o mínimo (o ponto mais baixo) ou o máximo (o ponto mais alto) da função?
+	\end{itemize}
+
+	\begin{equation}
+		r_1, r_2 = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+	\end{equation}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    ymin = -0.5,
+		    legend style={at={(0.5,1)},anchor=north}
+		]
+		\addplot [
+		    domain=1:4, 
+		    samples=100, 
+		    color=black,
+		    ]
+		    {x^2 -5*x + 6};
+		\addlegendentry{$f(x) = x^2 -5x + 6$}
+
+		\draw[dashed] (axis cs:1,0) -- (axis cs:4,0);
+		\draw[dashed] (axis cs:5/2,-1) -- (axis cs:5/2,2);
+
+		\draw[color=blue,fill=white] (axis cs:2,0) circle (2pt) {(2,0)};
+		\node[xshift=5pt,yshift=12pt] at (axis cs:2,0) {(2,0)};
+
+		\draw[color=blue,fill=white] (axis cs:3,0) circle (2pt) {(3,0)};
+		\node[xshift=-5pt,yshift=12pt] at (axis cs:3,0) {(3,0)};
+
+		\draw[color=blue,fill=white] (axis cs:5/2,-1/4) circle (2pt) {(1/2,-1/4)};
+		\node[xshift=30pt,yshift=-10pt] at (axis cs:5/2,-1/4) {(2.5,-0.25)};
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Anatomia da fórmula quadrática (ou de Bháskara)}
+
+	\begin{itemize}
+		\item Pergunta: e quando o gráfico não encosta no eixo x? Quais são as raízes?
+	\end{itemize}
+
+	\begin{equation}
+		r_1, r_2 = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+	\end{equation}
+
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    xlabel = $x$,
+		    ylabel = {$f(x)$},
+		    ymin = -0.5,
+		    legend style={at={(0.5,1)},anchor=north}
+		]
+		\addplot [
+		    domain=-2:2, 
+		    samples=100, 
+		    color=black,
+		    ]
+		    {x^2 + 1};
+		\addlegendentry{$f(x) = x^2 + 1$}
+
+		\draw[dashed] (axis cs:-2,0) -- (axis cs:2,0);
+		\draw[dashed] (axis cs:0,-0.5) -- (axis cs:0,5);
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Anatomia da fórmula quadrática (ou de Bháskara)}
+
+	\begin{itemize}
+		\item Pergunta: e quando o gráfico não encosta no eixo x? Quais são as raízes? $i$ e $-i$, pois $(x-i)(x+i) = x^2 + ix -ix -i^2 = x^2 + 1$
+	\end{itemize}
+
+	\begin{equation}
+		r_1, r_2 = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+	\end{equation}
+
+	\pgfplotsset{plot coordinates/math parser=false}
+	\begin{adjustbox}{max totalsize={\textwidth}{.6\textheight},center}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+		    axis lines = left,
+		    ylabel = {$\mathcal{R}(x)$},
+		    xlabel = {$\mathcal{I}(x)$},
+		    zlabel = {$\mathcal{R}(f(x))$},
+		    legend style={at={(0,1)},anchor=north}
+		]
+
+		\addplot3[
+			domain=-1:1,
+			surf,
+			scale only axis
+		]
+		{ -x^2 + y^2 + 1 }; % (a+bi)^2 + 1 = a² + 2abi -b² + 1
+		\addlegendentry{$f(x) = x^2 + 1$}
+
+		\draw[dashed] (axis cs:-1,0,0) -- (axis cs:1,0,0);
+		\draw[dashed] (axis cs:0,-1,0) -- (axis cs:0,1,0);
+
+		\draw[color=blue,fill=white] (axis cs:1,0,0) circle (4pt);
+		\node[xshift=-10pt,yshift=30pt] at (axis cs:1,0,0) {(i,0)};
+
+		\draw[color=blue,fill=white] (axis cs:-1,0,0) circle (4pt);
+		\node[xshift=-5pt,yshift=20pt] at (axis cs:-1,0,0) {(-i,0)};
+
+	\end{axis}
+	\end{tikzpicture}
+	\end{adjustbox}
+
+\end{frame}
+
 
 \end{document}
