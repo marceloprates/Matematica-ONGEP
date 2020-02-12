@@ -4,4 +4,6 @@ Repositório contendo material (apresentações de slides, código, diagramas, i
 
 *In English: Repository with material (presentations, code, diagrams, infographics and exercises) used in Math classes for the popular preparatory course for university admission exams ONGEP*
 
-![](Pictures/fractions.gif)
+![](Pictures/fractions_piechart-1.gif)
+![](Pictures/fractions_piechart-2.gif)
+![](Pictures/fractions_piechart-3.gif)
